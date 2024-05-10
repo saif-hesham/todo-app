@@ -12,25 +12,20 @@ const Form = ({ onAddItem }: FormProps) => {
 
     if (!desc.trim()) return;
 
-    const newItem = {
-      id: Date.now(),
-      description: desc,
-      quantity,
-      packed: false,
-    };
-
     try {
       const res = await fetch('http://localhost:5000/todos', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ description: desc, quantity, packed: false }),
       });
-      console.log(res);
+      const data = await res.json();
+      onAddItem(data);
+      // console.log(res);
+      //window.location = '/';
     } catch (err: any) {
       console.error(err.message);
     }
 
-    onAddItem(newItem);
     setDesc('');
     setQuantity(1);
   };

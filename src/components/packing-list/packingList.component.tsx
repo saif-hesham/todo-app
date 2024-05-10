@@ -4,7 +4,7 @@ import { useState } from 'react';
 type PackingProps = {
   items: Itemt[];
   onDeleteItem: (itemId: number) => void;
-  onCheck: (itemId: number) => void;
+  onCheck: (itemId: number, packed: boolean) => void;
   onClear: () => void;
 };
 
@@ -16,7 +16,6 @@ const PackingList = ({
 }: PackingProps) => {
   const [sort, setSort] = useState('input');
   let todoItems: Itemt[] = [];
-  console.log(sort);
 
   switch (sort) {
     case 'input':

@@ -8,7 +8,7 @@ export type Itemt = {
 type itemProps = {
   item: Itemt;
   onDeleteItem: (item: number) => void;
-  onCheck: (itemId: number) => void;
+  onCheck: (itemId: number, packed: boolean) => void;
 };
 
 const Item = ({ item, onDeleteItem, onCheck }: itemProps) => {
@@ -17,7 +17,7 @@ const Item = ({ item, onDeleteItem, onCheck }: itemProps) => {
       <input
         type='checkbox'
         checked={item.packed}
-        onChange={e => onCheck(item.id)}
+        onChange={e => onCheck(item.id, item.packed)}
       />
       <span style={item.packed ? { textDecoration: 'line-through' } : {}}>
         {item.quantity} {item.description}
